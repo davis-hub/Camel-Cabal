@@ -9,22 +9,25 @@ app.post('/camelify', async (req, res) => {
     const { imageBase64, mediaType } = req.body;
     if (!imageBase64 || !mediaType) return res.status(400).json({ error: 'Missing image data.' });
 
-    const analyzeRes = await fetch('https://api.anthropic.com/v1/messages', {
+    const geminiRes = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + process.env.GEMINI_KEY, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-api-key': process.env.ANTHROPIC_KEY, 'anthropic-version': '2023-06-01' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: [
-          { type: 'image', source: { type: 'base64', media_type: mediaType, data: imageBase64 } },
-          { type: 'text', text: 'Analyze this NFT pfp: background, outfit, accessories, lighting, colors. Write a FLUX prompt recreating ALL details but replacing the head with a Camel Cabal camel head (semi-realistic painted, warm brown fur, big nose, expressive eyes). Format: ANALYSIS: [text] PROMPT: [prompt]' }
-        ]}]
+        contents: [{
+          parts: [
+            { inline_data: { mime_type: mediaType, data: imageBase64 } },
+            { text: 'Analyze this NFT profile picture in detail: background, outfit, accessories, body position, lighting, colors. Then write a FLUX image generation prompt recreating ALL details exactly but replacing the character head with a Camel Cabal style camel head (semi-realistic painted camel, warm brown fur, big expressive nose, soulful eyes). Keep everything else identical. Format: ANALYSIS: [analysis] PROMPT: [prompt]' }
+          ]
+        }]
       })
     });
 
-    if (!analyzeRes.ok) { const e = await analyzeRes.json(); return res.status(500).json({ error: 'Claude: ' + (e.error?.message || analyzeRes.status) }); }
+    if (!geminiRes.ok) { const e = await geminiRes.json(); return res.status(500).json({ error: 'Gemini: ' + (e.error?.message || geminiRes.status) }); }
 
-    const txt = (await analyzeRes.json()).content[0].text;
+    const geminiData = await geminiRes.json();
+    const txt = geminiData.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!txt) return res.status(500).json({ error: 'No response from Gemini.' });
+
     const match = txt.match(/PROMPT:\s*([\s\S]+)/);
     if (!match) return res.status(500).json({ error: 'No prompt extracted.' });
 
