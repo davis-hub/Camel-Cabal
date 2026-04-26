@@ -154,7 +154,7 @@
     loadingText.textContent = 'Analyzing your pfp...';
     clearStatus();
     try {
-      const response = await fetch('/api/camelify', {
+      const response = await fetch('https://camel-cabal-production.up.railway.app/camelify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ imageBase64: uploadedImageBase64.split(',')[1], mediaType: uploadedFile.type })
