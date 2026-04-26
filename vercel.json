@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "functions": {
+    "api/camelify.js": {
+      "maxDuration": 60
+    }
+  }
+}
