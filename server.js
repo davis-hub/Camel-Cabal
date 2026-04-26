@@ -31,7 +31,7 @@ app.post('/camelify', async (req, res) => {
     const hfRes = await fetch('https://router.huggingface.co/hf-inference/models/black-forest-labs/FLUX.1-schnell', {
       method: 'POST',
       headers: {
-        'Authorization': 'Bearer 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',
+        'Authorization': 'Bearer ' + process.env.HF_KEY,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ inputs: match[1].trim() + ', NFT pfp square 1:1, painted camel head, warm brown fur, Camel Cabal style' })
