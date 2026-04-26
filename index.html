@@ -1,4 +1,4 @@
-[4/26/2026 1:46 AM] Ohnoroiza 🫶🏼♥️: <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -36,8 +36,7 @@
   .output-placeholder { text-align: center; padding: 2rem; }
   .output-placeholder .camel-emoji { font-size: 4rem; opacity: 0.15; display: block; margin-bottom: 1rem; }
   .output-placeholder p { font-size: 0.65rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; }
-  .
-[4/26/2026 1:46 AM] Ohnoroiza 🫶🏼♥️: loading-state { display: none; flex-direction: column; align-items: center; gap: 1.5rem; padding: 2rem; }
+  .loading-state { display: none; flex-direction: column; align-items: center; gap: 1.5rem; padding: 2rem; }
   .loading-state.active { display: flex; }
   .camel-loader { font-size: 3rem; animation: camelWalk 0.8s steps(2) infinite; }
   @keyframes camelWalk { 0% { transform: translateX(-10px) rotate(-3deg); } 50% { transform: translateX(10px) rotate(3deg); } 100% { transform: translateX(-10px) rotate(-3deg); } }
@@ -97,7 +96,7 @@
         <div class="loading-state" id="loadingState">
           <div class="camel-loader">🐪</div>
           <div class="loading-bar"></div>
-[4/26/2026 1:46 AM] Ohnoroiza 🫶🏼♥️: <div class="loading-text" id="loadingText">Analyzing your pfp...</div>
+          <div class="loading-text" id="loadingText">Analyzing your pfp...</div>
         </div>
         <img class="result-img" id="resultImg" alt="Camel version">
       </div>
@@ -153,7 +152,7 @@
     loadingText.textContent = 'Analyzing your pfp...';
     clearStatus();
     try {
-      const response = await fetch('https://camel-cabal-production.up.railway.app/camelify', {
+      const response = await fetch('https://camel-cabal.onrender.com/camelify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ imageBase64: uploadedImageBase64.split(',')[1], mediaType: uploadedFile.type })
