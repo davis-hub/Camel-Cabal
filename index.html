@@ -1,4 +1,4 @@
-[4/26/2026 12:27 AM] Ohnoroiza 🫶🏼♥️: <!DOCTYPE html>
+[4/26/2026 12:36 AM] Ohnoroiza 🫶🏼♥️: <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -6,56 +6,38 @@
 <title>CAMEL CABAL — PFP Converter</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --sand: #C8A96E;
-    --dark-sand: #8B6914;
-    --camel: #C19A6B;
-    --deep: #0A0A0A;
-    --surface: #111111;
-    --card: #1A1A1A;
-    --accent: #FFB800;
-    --accent2: #FF6B00;
-    --text: #F0E6D3;
-    --muted: #6B5B3E;
-    --border: #2A2A2A;
-    --success: #4CAF50;
-    --error: #FF4444;
-  }
+  :root { --deep: #0A0A0A; --card: #1A1A1A; --accent: #FFB800; --accent2: #FF6B00; --text: #F0E6D3; --muted: #6B5B3E; --border: #2A2A2A; --success: #4CAF50; --error: #FF4444; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--deep); color: var(--text); font-family: 'Space Mono', monospace; min-height: 100vh; overflow-x: hidden; cursor: crosshair; }
-  body::before { content: ''; position: fixed; inset: 0; background-image: radial-gradient(ellipse at 20% 50%, rgba(200, 169, 110, 0.05) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(255, 184, 0, 0.04) 0%, transparent 40%); pointer-events: none; z-index: 0; }
-  header { position: relative; z-index: 10; padding: 2rem 3rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); }
-  .logo { display: flex; flex-direction: column; gap: 0; }
-  .logo-top { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.15em; background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+  body { background: var(--deep); color: var(--text); font-family: 'Space Mono', monospace; min-height: 100vh; overflow-x: hidden; }
+  header { padding: 2rem 3rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); }
+  .logo-top { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.15em; background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .logo-sub { font-size: 0.6rem; letter-spacing: 0.4em; color: var(--muted); text-transform: uppercase; }
   .badge { background: var(--card); border: 1px solid var(--border); padding: 0.5rem 1rem; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; }
-  main { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; }
+  main { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; }
   .hero { text-align: center; margin-bottom: 4rem; }
-  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 6rem); letter-spacing: 0.05em; line-height: 0.9; margin-bottom: 1rem; }
+  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 6rem); line-height: 0.9; margin-bottom: 1rem; }
   .hero h1 span { background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .hero p { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.1em; max-width: 400px; margin: 0 auto; line-height: 1.8; }
   .converter { display: grid; grid-template-columns: 1fr auto 1fr; gap: 2rem; align-items: start; margin-bottom: 3rem; }
   .panel { background: var(--card); border: 1px solid var(--border); position: relative; }
   .panel-label { position: absolute; top: -0.6rem; left: 1.5rem; background: var(--card); padding: 0 0.5rem; font-size: 0.6rem; letter-spacing: 0.3em; color: var(--muted); text-transform: uppercase; }
   .panel-label.output-label { color: var(--accent); }
-  .drop-zone { padding: 3rem 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; cursor: pointer; transition: all 0.2s; min-height: 300px; }
-  .drop-zone:hover { background: rgba(255, 184, 0, 0.02); }
-  .drop-zone.dragover { background: rgba(255, 184, 0, 0.05); border-color: var(--accent); }
+  .drop-zone { padding: 3rem 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; cursor: pointer; transition: all 0.2s; min-height: 300px; text-decoration: none; }
+  .drop-zone:hover { background: rgba(255,184,0,0.05); }
   .drop-icon { font-size: 3rem; opacity: 0.3; }
   .drop-text { font-size: 0.7rem; letter-spacing: 0.2em; color: var(--muted); text-align: center; text-transform: uppercase; }
-  .drop-text strong { display: block; color: var(--text); font-size: 0.9rem; letter-spacing: 0.1em; margin-bottom: 0.3rem; }
-  #fileInput { display: none; }
+  .drop-text strong { display: block; color: var(--text); font-size: 0.9rem; margin-bottom: 0.3rem; }
   .preview-img { width: 100%; height: 300px; object-fit: contain; display: block; padding: 1rem; }
   .arrow-connector { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; padding-top: 2rem; min-width: 80px; }
   .arrow-line { width: 60px; height: 2px; background: linear-gradient(90deg, var(--border), var(--accent)); position: relative; }
-  .
-[4/26/2026 12:27 AM] Ohnoroiza 🫶🏼♥️: arrow-line::after { content: '▶'; position: absolute; right: -8px; top: 50%; transform: translateY(-50%); font-size: 0.6rem; color: var(--accent); }
+  .arrow-line::after { content: '▶'; position: absolute; right: -8px; top: 50%; transform: translateY(-50%); font-size: 0.6rem; color: var(--accent); }
   .arrow-label { font-size: 0.5rem; letter-spacing: 0.3em; color: var(--muted); text-transform: uppercase; text-align: center; }
-  .output-zone { min-height: 300px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .output-zone { min-height: 300px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
   .output-placeholder { text-align: center; padding: 2rem; }
   .output-placeholder .camel-emoji { font-size: 4rem; opacity: 0.15; display: block; margin-bottom: 1rem; }
   .output-placeholder p { font-size: 0.65rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; }
-  .loading-state { display: none; flex-direction: column; align-items: center; gap: 1.5rem; padding: 2rem; }
+  .
+[4/26/2026 12:36 AM] Ohnoroiza 🫶🏼♥️: loading-state { display: none; flex-direction: column; align-items: center; gap: 1.5rem; padding: 2rem; }
   .loading-state.active { display: flex; }
   .camel-loader { font-size: 3rem; animation: camelWalk 0.8s steps(2) infinite; }
   @keyframes camelWalk { 0% { transform: translateX(-10px) rotate(-3deg); } 50% { transform: translateX(10px) rotate(3deg); } 100% { transform: translateX(-10px) rotate(-3deg); } }
@@ -65,23 +47,20 @@
   .loading-text { font-size: 0.65rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; }
   .result-img { width: 100%; height: 300px; object-fit: contain; display: none; padding: 1rem; }
   .btn-convert { display: block; width: 100%; background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%); color: var(--deep); border: none; font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.2em; padding: 1.2rem 2rem; cursor: pointer; transition: all 0.2s; text-transform: uppercase; margin-bottom: 1rem; }
-  .btn-convert:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255, 184, 0, 0.3); }
-  .btn-convert:active { transform: translateY(0); }
+  .btn-convert:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,184,0,0.3); }
   .btn-convert:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
   .btn-download { display: none; width: 100%; background: transparent; color: var(--accent); border: 1px solid var(--accent); font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; padding: 0.8rem 2rem; cursor: pointer; transition: all 0.2s; text-transform: uppercase; text-align: center; text-decoration: none; }
-  .btn-download:hover { background: rgba(255, 184, 0, 0.1); }
+  .btn-download:hover { background: rgba(255,184,0,0.1); }
   .status { font-size: 0.65rem; letter-spacing: 0.15em; text-align: center; padding: 0.5rem; display: none; }
   .status.error { color: var(--error); display: block; }
   .status.success { color: var(--success); display: block; }
   .status.info { color: var(--muted); display: block; }
-  footer { position: relative; z-index: 1; text-align: center; padding: 2rem; border-top: 1px solid var(--border); font-size: 0.6rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; }
+  footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); font-size: 0.6rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; }
   footer span { color: var(--accent); }
-  .scanlines { position: fixed; inset: 0; pointer-events: none; z-index: 100; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px); }
-  @media (max-width: 768px) { .converter { grid-template-columns: 1fr; } .arrow-connector { transform: rotate(90deg); padding: 0; margin: 0 auto; } header { padding: 1.5rem; } .logo-top { font-size: 1.8rem; } }
+  @media (max-width: 768px) { .converter { grid-template-columns: 1fr; } header { padding: 1.5rem; } .logo-top { font-size: 1.8rem; } }
 </style>
 </head>
 <body>
-<div class="scanlines"></div>
 <header>
   <div class="logo">
     <div class="logo-top">Camel Cabal</div>
@@ -92,17 +71,16 @@
 <main>
   <div class="hero">
     <h1>YOUR PFP.<br><span>CAMELIFIED.</span></h1>
-    <p>Upload your NFT pfp.
-[4/26/2026 12:27 AM] Ohnoroiza 🫶🏼♥️: We analyze every detail — outfit, background, accessories — and rebuild you as a member of the Cabal.</p>
+    <p>Upload your NFT pfp. We analyze every detail — outfit, background, accessories — and rebuild you as a member of the Cabal.</p>
   </div>
   <div class="converter">
     <div class="panel">
       <span class="panel-label">Your PFP</span>
-      <div class="drop-zone" id="dropZone">
+      <label for="fileInput" class="drop-zone" id="dropZone">
         <div class="drop-icon">⬆</div>
         <div class="drop-text"><strong>Drop PFP Here</strong>Click or drag your NFT pfp</div>
-        <input type="file" id="fileInput" accept="image/*">
-      </div>
+      </label>
+      <input type="file" id="fileInput" accept="image/*" style="display:none;">
       <img class="preview-img" id="previewImg" style="display:none;" alt="Your PFP">
     </div>
     <div class="arrow-connector">
@@ -119,7 +97,7 @@
         <div class="loading-state" id="loadingState">
           <div class="camel-loader">🐪</div>
           <div class="loading-bar"></div>
-          <div class="loading-text" id="loadingText">Analyzing your pfp...</div>
+[4/26/2026 12:36 AM] Ohnoroiza 🫶🏼♥️: <div class="loading-text" id="loadingText">Analyzing your pfp...</div>
         </div>
         <img class="result-img" id="resultImg" alt="Camel version">
       </div>
@@ -131,9 +109,9 @@
 </main>
 <footer>Built for <span>Camel Cabal</span> — Not affiliated. Just a fan. 🐪</footer>
 <script>
-  const dropZone = document.getElementById('dropZone');
   const fileInput = document.getElementById('fileInput');
   const previewImg = document.getElementById('previewImg');
+  const dropZone = document.getElementById('dropZone');
   const convertBtn = document.getElementById('convertBtn');
   const downloadBtn = document.getElementById('downloadBtn');
   const outputPlaceholder = document.getElementById('outputPlaceholder');
@@ -143,15 +121,30 @@
   const status = document.getElementById('status');
   let uploadedImageBase64 = null;
   let uploadedFile = null;
-  dropZone.addEventListener('click', () => fileInput.click());
-  dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
-  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
-  dropZone.addEventListener('drop', (e) => { e.preventDefault(); dropZone.classList.remove('dragover'); const file = e.dataTransfer.files[0]; if (file && file.type.startsWith('image/')) handleFile(file); });
+
   fileInput.addEventListener('change', () => { if (fileInput.files[0]) handleFile(fileInput.files[0]); });
-  function handleFile(file) { uploadedFile = file; const reader = new FileReader(); reader.onload = (e) => { uploadedImageBase64 = e.target.result; previewImg.src = uploadedImageBase64; previewImg.style.display = 'block'; dropZone.style.display = 'none'; convertBtn.disabled = false; resetOutput(); setStatus('PFP loaded. Ready to camelify.', 'info'); }; reader.readAsDataURL(file); }
-  function resetOutput() { resultImg.style.display = 'none'; resultImg.src = ''; downloadBtn.style.display = 'none'; outputPlaceholder.style.display = 'flex'; loadingState.classList.remove('active'); }
+
+  dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.background = 'rgba(255,184,0,0.05)'; });
+  dropZone.addEventListener('dragleave', () => { dropZone.style.background = ''; });
+  dropZone.addEventListener('drop', (e) => { e.preventDefault(); dropZone.style.background = ''; const file = e.dataTransfer.files[0]; if (file && file.type.startsWith('image/')) handleFile(file); });
+
+  function handleFile(file) {
+    uploadedFile = file;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      uploadedImageBase64 = e.target.result;
+      previewImg.src = uploadedImageBase64;
+      previewImg.style.display = 'block';
+      dropZone.style.display = 'none';
+      convertBtn.disabled = false;
+      setStatus('PFP loaded. Ready to camelify.', 'info');
+    };
+    reader.readAsDataURL(file);
+  }
+
   function setStatus(msg, type) { status.textContent = msg; status.className = 'status ' + type; }
   function clearStatus() { status.className = 'status'; }
+
   convertBtn.addEventListener('click', async () => {
     if (!uploadedImageBase64) return;
     convertBtn.disabled = true;
@@ -161,3 +154,28 @@
     loadingText.textContent = 'Analyzing your pfp...';
     clearStatus();
     try {
+      const response = await fetch('/api/camelify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ imageBase64: uploadedImageBase64.split(',')[1], mediaType: uploadedFile.type })
+      });
+      loadingText.textContent = 'Generating your camel pfp...';
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Something went wrong.');
+      if (!data.imageUrl) throw new Error('No image returned.');
+      loadingState.classList.remove('active');
+      resultImg.src = data.imageUrl;
+      resultImg.style.display = 'block';
+      downloadBtn.href = data.imageUrl;
+      downloadBtn.style.display = 'block';
+      setStatus('🐪 Welcome to the Cabal.', 'success');
+    } catch (err) {
+      loadingState.classList.remove('active');
+      outputPlaceholder.style.display = 'flex';
+      setStatus('⚠ ' + err.message, 'error');
+    }
+    convertBtn.disabled = false;
+  });
+</script>
+</body>
+</html>
