@@ -15,7 +15,7 @@ app.post('/camelify', async (req, res) => {
       body: JSON.stringify({
         contents: [{ parts: [
           { inline_data: { mime_type: mediaType, data: imageBase64 } },
-          { text: 'Analyze this NFT profile picture in detail: background, outfit, accessories, body position, lighting, colors. Then write a FLUX image generation prompt recreating ALL details exactly but replacing the character head with a Camel Cabal style camel head (semi-realistic painted camel, warm brown fur, big expressive nose, soulful eyes). Keep everything else identical. Format: ANALYSIS: [analysis] PROMPT: [prompt]' }
+          { text: 'Analyze this NFT profile picture in extreme detail: exact background colors and environment, every clothing item with colors and brands, all accessories, body position, lighting direction, color palette. Then write a detailed Stable Diffusion prompt that recreates EVERYTHING exactly but replaces the character head with a Camel Cabal NFT style camel head. The camel head must be: semi-realistic digital painting style, warm sandy brown fur with detailed texture, large soulful expressive eyes, big bulbous nose, slightly smug or characterful expression, painterly brush strokes, same lighting as original. Keep body, outfit, background 100% identical. Format: ANALYSIS: [analysis] PROMPT: [prompt]' }
         ]}]
       })
     });
@@ -28,13 +28,15 @@ app.post('/camelify', async (req, res) => {
     const match = txt.match(/PROMPT:\s*([\s\S]+)/);
     if (!match) return res.status(500).json({ error: 'No prompt extracted.' });
 
+    const finalPrompt = match[1].trim() + ', semi-realistic digital painting, camel head with warm sandy brown fur, large expressive eyes, big bulbous nose, smug characterful expression, painterly brush strokes, detailed fur texture, NFT profile picture square format, high quality illustration, same lighting and background as original';
+
     const hfRes = await fetch('https://router.huggingface.co/hf-inference/models/black-forest-labs/FLUX.1-schnell', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + process.env.HF_KEY,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ inputs: match[1].trim() + ', NFT pfp square 1:1, painted camel head, warm brown fur, Camel Cabal style' })
+      body: JSON.stringify({ inputs: finalPrompt })
     });
 
     if (!hfRes.ok) { const e = await hfRes.text(); return res.status(500).json({ error: 'HuggingFace: ' + e }); }
